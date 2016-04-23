@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Final Grade Calculator</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desired_grade">Desired Grade</string>
+    <string name="current_grade">Current Grade</string>
+    <string name="weight_final">Weight of Final</string>
+    <string name="calculate">Calculate</string>
+</resources>

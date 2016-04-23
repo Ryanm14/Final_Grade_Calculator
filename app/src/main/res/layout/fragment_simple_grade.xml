@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragments.SimpleGradeFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_simple_grade_desired_grade_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/desired_grade"
+                android:layout_gravity="center"
+                android:layout_marginRight="15dp"/>
+            <EditText
+                android:layout_width="150dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/fragment_simple_grade_desired_grade_edit_text"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_simple_grade_current_grade_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_grade"
+                android:layout_gravity="center"
+                android:layout_marginRight="15dp"/>
+            <EditText
+                android:layout_width="150dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/fragment_simple_grade_current_grade_edit_text"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_simple_grade_weight_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weight_final"
+                android:layout_gravity="center"
+                android:layout_marginRight="15dp"/>
+            <EditText
+                android:layout_width="150dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/fragment_simple_grade_weight_edit_text"/>
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_simple_grade_calculate_button"
+            android:text="@string/calculate"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"/>
+    </LinearLayout>
+
+</RelativeLayout>
