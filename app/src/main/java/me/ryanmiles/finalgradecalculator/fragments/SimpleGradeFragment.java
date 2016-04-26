@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.rengwuxian.materialedittext.MaterialEditText;
+import com.rengwuxian.materialedittext.validation.RegexpValidator;
+
 import me.ryanmiles.finalgradecalculator.R;
 
 /**
@@ -17,7 +21,7 @@ import me.ryanmiles.finalgradecalculator.R;
  */
 public class SimpleGradeFragment extends Fragment {
 
-    EditText mDesiredGradeEditText;
+    MaterialEditText mDesiredGradeEditText;
     EditText mCurrentGradeEditText;
     EditText mWeightEditText;
     Button mCalculateButton;
@@ -32,10 +36,11 @@ public class SimpleGradeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_simple_grade, container, false);
-        mDesiredGradeEditText = (EditText) rootView.findViewById(R.id.fragment_simple_grade_desired_grade_edit_text);
+        mDesiredGradeEditText = (MaterialEditText) rootView.findViewById(R.id.fragment_simple_grade_desired_grade_edit_text);
         mCurrentGradeEditText = (EditText) rootView.findViewById(R.id.fragment_simple_grade_current_grade_edit_text);
         mWeightEditText = (EditText) rootView.findViewById(R.id.fragment_simple_grade_weight_edit_text);
         mCalculateButton = (Button) rootView.findViewById(R.id.fragment_simple_grade_calculate_button);
+
 
         mCalculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +52,7 @@ public class SimpleGradeFragment extends Fragment {
     }
 
     private void calculate() {
+        mDesiredGradeEditText.validateWith(new RegexpValidator("Only Integer Valid!", "\\d+"));
         double desiredGrade = Integer.parseInt(mDesiredGradeEditText.getText().toString()) / 100.0;
         double currentGrade = Integer.parseInt(mCurrentGradeEditText.getText().toString()) / 100.0;
         double weight = Integer.parseInt(mWeightEditText.getText().toString()) / 100.0;
@@ -55,6 +61,11 @@ public class SimpleGradeFragment extends Fragment {
         finalGrade *= 100;
         Toast.makeText(getActivity(),"Final grade: " + finalGrade, Toast.LENGTH_LONG).show();
 
+        new MaterialDialog.Builder(getActivity())
+                .title("Grade Calcuatlor")
+                .content("You need a " + finalGrade + " to make a " + desiredGrade)
+                .positiveText("Ok")
+                .show();
     }
 
 }

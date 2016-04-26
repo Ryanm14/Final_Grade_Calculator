@@ -24,4 +24,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
+        transitive = true
+    }
+    //EditText 2
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    //Later
+    compile 'info.hoang8f:fbutton:1.0.5'
+    compile 'com.github.medyo:android-about-page:1.0.2'
 }
