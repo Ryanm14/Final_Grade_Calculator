@@ -7,4 +7,7 @@
     <string name="current_grade">Current Grade</string>
     <string name="weight_final">Weight of Final</string>
     <string name="calculate">Calculate</string>
+    <string name="grade_you_need_to_make">Grade you need to make:</string>
+    <string name="default_grade">...%</string>
+    <string name="about">About</string>
 </resources>

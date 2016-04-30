@@ -1,45 +1,45 @@
 package me.ryanmiles.finalgradecalculator.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.rengwuxian.materialedittext.MaterialEditText;
-import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
 import me.ryanmiles.finalgradecalculator.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class SimpleGradeFragment extends Fragment {
 
-    MaterialEditText mDesiredGradeEditText;
+    EditText mDesiredGradeEditText;
     EditText mCurrentGradeEditText;
     EditText mWeightEditText;
     Button mCalculateButton;
+    TextView mNeededGrade;
 
     public SimpleGradeFragment() {
-        // Required empty public constructor
+
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_simple_grade, container, false);
-        mDesiredGradeEditText = (MaterialEditText) rootView.findViewById(R.id.fragment_simple_grade_desired_grade_edit_text);
+
+        View rootView = inflater.inflate(R.layout.fragment_simple_grade, container, false);
+        mDesiredGradeEditText = (EditText) rootView.findViewById(R.id.fragment_simple_grade_desired_grade_edit_text);
         mCurrentGradeEditText = (EditText) rootView.findViewById(R.id.fragment_simple_grade_current_grade_edit_text);
         mWeightEditText = (EditText) rootView.findViewById(R.id.fragment_simple_grade_weight_edit_text);
         mCalculateButton = (Button) rootView.findViewById(R.id.fragment_simple_grade_calculate_button);
+        mNeededGrade = (TextView) rootView.findViewById(R.id.fragment_simple_grade_grade_need_text_view);
 
 
         mCalculateButton.setOnClickListener(new View.OnClickListener() {
@@ -51,21 +51,38 @@ public class SimpleGradeFragment extends Fragment {
         return rootView;
     }
 
-    private void calculate() {
-        mDesiredGradeEditText.validateWith(new RegexpValidator("Only Integer Valid!", "\\d+"));
-        double desiredGrade = Integer.parseInt(mDesiredGradeEditText.getText().toString()) / 100.0;
-        double currentGrade = Integer.parseInt(mCurrentGradeEditText.getText().toString()) / 100.0;
-        double weight = Integer.parseInt(mWeightEditText.getText().toString()) / 100.0;
-        double finalGrade = 0;
-        finalGrade = (desiredGrade - (1 - weight) * currentGrade) / weight;
-        finalGrade *= 100;
-        Toast.makeText(getActivity(),"Final grade: " + finalGrade, Toast.LENGTH_LONG).show();
 
-        new MaterialDialog.Builder(getActivity())
-                .title("Grade Calcuatlor")
-                .content("You need a " + finalGrade + " to make a " + desiredGrade)
-                .positiveText("Ok")
-                .show();
+    private void calculate() {
+        hideKeyboard();
+        if (!checkNullData()) {
+            double desiredGrade = Double.parseDouble(mDesiredGradeEditText.getText().toString()) / 100.0;
+            double currentGrade = Double.parseDouble(mCurrentGradeEditText.getText().toString()) / 100.0;
+            double weight = Double.parseDouble(mWeightEditText.getText().toString()) / 100.0;
+            double finalGrade = 0;
+            finalGrade = (desiredGrade - (1 - weight) * currentGrade) / weight;
+            finalGrade *= 100;
+            mNeededGrade.setText((double) Math.round(finalGrade * 10d) / 10d + "%");
+        }
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    private boolean checkNullData() {
+        if (mCurrentGradeEditText.getText().toString().matches("")
+                || mDesiredGradeEditText.getText().toString().matches("")
+                || mWeightEditText.getText().toString().matches("")) {
+
+            new MaterialDialog.Builder(getActivity())
+                    .title("Error")
+                    .content("Please check the numbers entered")
+                    .positiveText("Ok")
+                    .show();
+            return true;
+        }
+        return false;
     }
 
 }

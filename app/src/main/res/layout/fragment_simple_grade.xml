@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:fbutton="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -9,74 +10,75 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/fragment_simple_grade_desired_grade_edit_text"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:hint="Desired Grade"
+            android:inputType="numberDecimal"
+            app:met_floatingLabel="highlight"/>
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/fragment_simple_grade_desired_grade_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Desired Grade"
-                app:met_floatingLabel="highlight"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/fragment_simple_grade_current_grade_edit_text"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:hint="Current Grade"
+            android:inputType="numberDecimal"
+            app:met_floatingLabel="highlight"/>
 
-            <TextView
-                android:id="@+id/fragment_simple_grade_current_grade_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="15dp"
-                android:text="@string/current_grade"/>
 
-            <EditText
-                android:id="@+id/fragment_simple_grade_current_grade_edit_text"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/fragment_simple_grade_weight_edit_text"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:hint="Weight of Final"
+            android:inputType="numberDecimal"
+            app:met_floatingLabel="highlight"/>
 
-            <TextView
-                android:id="@+id/fragment_simple_grade_weight_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="15dp"
-                android:text="@string/weight_final"/>
-
-            <EditText
-                android:id="@+id/fragment_simple_grade_weight_edit_text"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"/>
-        </LinearLayout>
-
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/fragment_simple_grade_calculate_button"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            android:text="@string/calculate"/>
+            android:text="@string/calculate"
+            android:textColor="#ffffff"
+            fbutton:buttonColor="@color/fbutton_color_alizarin"
+            fbutton:cornerRadius="5dp"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@android:style/TextAppearance.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grade_you_need_to_make"/>
+
+        <TextView
+            android:id="@+id/fragment_simple_grade_grade_need_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:gravity="center_horizontal"
+            android:text="@string/default_grade"
+            android:textColor="@color/fbutton_color_alizarin"
+            android:textSize="75sp"/>
     </LinearLayout>
 
 </RelativeLayout>
